@@ -1,0 +1,33 @@
+﻿services:
+  ragexample:
+    image: ragexample
+    build:
+      context: .
+      dockerfile: RagExample/Dockerfile
+    environment:
+      - ConnectionString=Host=postgres;Database=ragexample_db;Username=postgres;Password=postgres
+      - ObsidianStoragePath=/app/data
+    ports:
+      - "8080:8080"
+    depends_on:
+      - postgres
+    volumes:
+      - /mnt/d/Storage/CountNeuroBrain:/app/data:ro
+
+  postgres:
+    build:
+      context: ./pgvector
+      dockerfile: Dockerfile
+    container_name: ragexample-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: ragexample_db
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+  

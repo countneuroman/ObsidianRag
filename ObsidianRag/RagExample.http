@@ -1,0 +1,12 @@
+@RagExample_HostAddress = http://localhost:8080
+
+GET {{RagExample_HostAddress}}/weatherforecast/
+Accept: application/json
+
+### Search
+POST {{RagExample_HostAddress}}/Search/
+Content-Type: application/json
+
+{
+  "search": "что такое oauth"
+}
