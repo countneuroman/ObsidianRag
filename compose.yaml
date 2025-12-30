@@ -1,11 +1,11 @@
 ﻿services:
-  ragexample:
-    image: ragexample
+  obsidianrag:
+    image: obsidianrag
     build:
       context: .
-      dockerfile: RagExample/Dockerfile
+      dockerfile: ObsidianRag/Dockerfile
     environment:
-      - ConnectionString=Host=postgres;Database=ragexample_db;Username=postgres;Password=postgres
+      - ConnectionString=Host=postgres;Database=obsidianrag_db;Username=postgres;Password=postgres
       - ObsidianStoragePath=/app/data
     ports:
       - "8080:8080"
@@ -18,11 +18,11 @@
     build:
       context: ./pgvector
       dockerfile: Dockerfile
-    container_name: ragexample-postgres
+    container_name: obsidianrag-postgres
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: ragexample_db
+      POSTGRES_DB: obsidianrag_db
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     volumes:
